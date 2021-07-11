@@ -471,8 +471,9 @@ GameObject:
   m_Component:
   - component: {fileID: 352461740}
   - component: {fileID: 352461739}
+  - component: {fileID: 352461741}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,13 +493,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
   sounds:
-  - name: MainTheme
+  - name: Main Theme
     clip: {fileID: 8300000, guid: 8b8f31f523997104d821cb9df1602523, type: 3}
     volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: countTo4
+    clip: {fileID: 8300000, guid: cb1460f7b3d693e438d6d7b9d01312bf, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: countTo7
+    clip: {fileID: 8300000, guid: ea246d7a371959c468af7a660537f3a4, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: countTo10
+    clip: {fileID: 8300000, guid: eab4d81be1382bd4facaa5d2b64b06be, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &352461740
@@ -515,6 +543,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &352461741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352461738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c244c60f16ed04bb3c68b609d8e331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audMan: {fileID: 352461739}
 --- !u!1 &486111050
 GameObject:
   m_ObjectHideFlags: 0
