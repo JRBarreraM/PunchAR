@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Mona.unity
+    guid: ced6fdd3e22209b47a90026dc68242fe
+  - enabled: 1
+    path: Assets/Scenes/Markers.unity
+    guid: 3b94614e277cd094fb4d7e04f4e8d279
   m_configObjects: {}
