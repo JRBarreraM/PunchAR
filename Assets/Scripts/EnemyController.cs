@@ -39,7 +39,8 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator DoAnimation(string action){
         animator.SetBool(action, true);
-        badGuy.GetComponent<PlayerController>().PunchReceived(lHookAct);
+        if (lHookAct || rHookAct)
+            badGuy.GetComponent<PlayerController>().PunchReceived(lHookAct);
         yield return new WaitForSeconds(0.5f);
         animator.SetBool(action, false);
         switch (action)

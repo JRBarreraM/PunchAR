@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public AudioManager audMan;
-
+    public int round = 1;
+    
     void StartScene()
     {
         SceneManager.LoadScene("Movement", LoadSceneMode.Single);
