@@ -1151,7 +1151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1929319438}
-        m_MethodName: DoRightHook
+        m_MethodName: DoLeftHook
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2263,7 +2263,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1929319438}
-        m_MethodName: DoLeftHook
+        m_MethodName: DoRightHook
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
