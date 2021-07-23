@@ -4,14 +4,17 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image HealthBarImage;
+    private float health;
     public void SetHealthBarValue(float value)
     {
+        Debug.Log(health);
+        health = value;
         HealthBarImage.transform.localScale = new Vector3(value, 1, 1);
-        if(HealthBarImage.fillAmount < 0.3f)
+        if(health <= 0.3f)
         {
             SetHealthBarColor(Color.red);
         }
-        else if(HealthBarImage.fillAmount < 0.6f)
+        else if(health <= 0.6f)
         {
             SetHealthBarColor(Color.yellow);
         }
@@ -20,10 +23,14 @@ public class HealthBar : MonoBehaviour
             SetHealthBarColor(Color.green);
         }
     }
- 
+
+    public void DecreaseHealth(){
+        if (health > 0.1f)
+            SetHealthBarValue(GetHealthBarValue() - 0.2f);
+    }
     public float GetHealthBarValue()
     {
-        return HealthBarImage.transform.localScale.z;
+        return health;
     }
  
     public void SetHealthBarColor(Color healthColor)
@@ -32,6 +39,6 @@ public class HealthBar : MonoBehaviour
     }
 
     public void Start(){
-        SetHealthBarValue(0.7f);
+        SetHealthBarValue(1.0f);
     }
 }

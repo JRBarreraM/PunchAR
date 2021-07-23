@@ -6,31 +6,57 @@ public class EnemyController : MonoBehaviour
 {
 
     Animator animator;
-    public Transform badGuy;
+    public GameObject badGuy;
+    public HealthBar healthBar;
+    public bool busy = false;
+    public bool lHookAct = false;
+    public bool rHookAct = false;
+    public bool lDodgeAct = false;
+    public bool rDodgeAct = false;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-    }   
-
+    }
 
     public void DoLeftHook(){
-        StartCoroutine(DoAnimation("LeftHook"));
+        if (!busy){lHookAct = true; busy = true; StartCoroutine(DoAnimation("LeftHook"));}
     }
     public void DoRightHook(){
-        StartCoroutine(DoAnimation("RightHook"));
+        if (!busy){rHookAct = true; busy = true; StartCoroutine(DoAnimation("RightHook"));}
     }
     public void DoRightBlock(){
-        StartCoroutine(DoAnimation("RightBlock"));
+        if (!busy){rDodgeAct = true; busy = true; StartCoroutine(DoAnimation("RightBlock"));}
     }
     public void DoLeftBlock(){
-        StartCoroutine(DoAnimation("LeftBlock"));
+        if (!busy){lDodgeAct = true; busy = true; StartCoroutine(DoAnimation("LeftBlock"));}
     }
     IEnumerator DoAnimation(string action){
         animator.SetBool(action, true);
+        badGuy.GetComponent<PlayerController>().PunchReceived(lHookAct);
         yield return new WaitForSeconds(0.5f);
         animator.SetBool(action, false);
+        switch (action)
+        {
+            case "LeftHook":
+                lHookAct = false; busy = false; break;
+            case "RightHook":
+                rHookAct = false; busy = false; break;
+            case "RightBlock":
+                lDodgeAct = false; busy = false; break;
+            case "LeftBlock":
+                rDodgeAct = false; busy = false; break;
+        }
+    }
+
+    public void PunchReceived(bool left){
+        if (!lDodgeAct && left){
+            healthBar.DecreaseHealth();
+        }
+        else if (!rDodgeAct && !left) {
+            healthBar.DecreaseHealth();
+        }  
     }
 
     // Update is called once per frame
@@ -47,7 +73,7 @@ public class EnemyController : MonoBehaviour
         // animator.SetBool("RightBlock", rightBlock);
         // animator.SetBool("RightHook", rightHook);
 
-        Vector3 targetPostition = new Vector3(badGuy.position.x, this.transform.position.y, badGuy.position.z);
+        Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));
 

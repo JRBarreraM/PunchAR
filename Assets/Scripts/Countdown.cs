@@ -36,7 +36,7 @@ public class Countdown : MonoBehaviour
         audMan.Play(sound);
         yield return new WaitForSeconds(1f);
         int i = 1;
-        while(i <= 4){
+        while(i <= goal){
             countdownDisplay.text = i.ToString();
             yield return new WaitForSeconds(1f);
             i++;
