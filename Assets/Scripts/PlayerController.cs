@@ -22,21 +22,24 @@ public class PlayerController : MonoBehaviour
     public void DoLeftHook(){
         if (!busy){lHookAct = true; busy = true; StartCoroutine(DoAnimation("LeftHook"));}
     }
+
     public void DoRightHook(){
         if (!busy){rHookAct = true; busy = true; StartCoroutine(DoAnimation("RightHook"));}
     }
+
     public void DoRightBlock(){
         if (!busy){rDodgeAct = true; busy = true; StartCoroutine(DoAnimation("RightBlock"));}
     }
+
     public void DoLeftBlock(){
         if (!busy){lDodgeAct = true; busy = true; StartCoroutine(DoAnimation("LeftBlock"));}
     }
+
     IEnumerator DoAnimation(string action){
-        animator.SetBool(action, true);
+        animator.SetTrigger(action);
+        yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct)
             badGuy.GetComponent<EnemyController>().PunchReceived(lHookAct);
-        yield return new WaitForSeconds(0.5f);
-        animator.SetBool(action, false);
         switch (action)
         {
             case "LeftHook":
@@ -52,9 +55,11 @@ public class PlayerController : MonoBehaviour
 
     public void PunchReceived(bool left){
         if (!lDodgeAct && left){
-           healthBar.DecreaseHealth();
+            animator.SetTrigger("Hit");
+            healthBar.DecreaseHealth();
         }
         else if (!rDodgeAct && !left) {
+            animator.SetTrigger("Hit");
             healthBar.DecreaseHealth();
         }  
     }

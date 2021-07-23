@@ -38,11 +38,10 @@ public class EnemyController : MonoBehaviour
     }
 
     IEnumerator DoAnimation(string action){
-        animator.SetBool(action, true);
+        animator.SetTrigger(action);
+        yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct)
             badGuy.GetComponent<PlayerController>().PunchReceived(lHookAct);
-        yield return new WaitForSeconds(0.5f);
-        animator.SetBool(action, false);
         switch (action)
         {
             case "LeftHook":
@@ -58,9 +57,11 @@ public class EnemyController : MonoBehaviour
 
     public void PunchReceived(bool left){
         if (!lDodgeAct && left){
+            animator.SetTrigger("Hit");
             healthBar.DecreaseHealth();
         }
         else if (!rDodgeAct && !left) {
+            animator.SetTrigger("Hit");
             healthBar.DecreaseHealth();
         }  
     }
