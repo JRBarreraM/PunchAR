@@ -42,8 +42,9 @@ public class BoxerController : MonoBehaviour
         animator.SetTrigger(action);
         yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct) {
-            badGuy.GetComponent<BoxerController>().PunchReceived(lHookAct);
+            StartCoroutine(badGuy.GetComponent<BoxerController>().PunchReceived(lHookAct));
         }
+        yield return new WaitForSeconds(1.5f);
         switch (action)
         {
             case "LeftHook":
@@ -57,7 +58,8 @@ public class BoxerController : MonoBehaviour
         }
     }
 
-    public void PunchReceived(bool left){
+    public IEnumerator PunchReceived(bool left){
+        busy = true;
         if ((!lDodgeAct && left) || (!rDodgeAct && !left)){
             bool alive = healthBar.DecreaseHealth();
             if (!alive && !isDown){
@@ -67,6 +69,8 @@ public class BoxerController : MonoBehaviour
                 animator.SetTrigger("Hit");
             }
         }
+        yield return new WaitForSeconds(1.5f);
+        busy = false;
     }
 
     IEnumerator Knocked(){
@@ -96,8 +100,8 @@ public class BoxerController : MonoBehaviour
                 yield return new WaitForSeconds(10f);
                 break;
         }
-
-        yield return new WaitForSeconds(1f);
+        healthBar.SetHealthBarValue(1.0f);
+        yield return new WaitForSeconds(2f);
         busy = false;
     }
 
@@ -107,6 +111,5 @@ public class BoxerController : MonoBehaviour
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));
-
     }
 }
