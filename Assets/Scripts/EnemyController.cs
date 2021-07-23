@@ -18,20 +18,25 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-    }
+        StartCoroutine(DoAttack());
+    }   
 
     public void DoLeftHook(){
         if (!busy){lHookAct = true; busy = true; StartCoroutine(DoAnimation("LeftHook"));}
     }
+
     public void DoRightHook(){
         if (!busy){rHookAct = true; busy = true; StartCoroutine(DoAnimation("RightHook"));}
     }
+
     public void DoRightBlock(){
         if (!busy){rDodgeAct = true; busy = true; StartCoroutine(DoAnimation("RightBlock"));}
     }
+
     public void DoLeftBlock(){
         if (!busy){lDodgeAct = true; busy = true; StartCoroutine(DoAnimation("LeftBlock"));}
     }
+
     IEnumerator DoAnimation(string action){
         animator.SetBool(action, true);
         badGuy.GetComponent<PlayerController>().PunchReceived(lHookAct);
@@ -57,6 +62,28 @@ public class EnemyController : MonoBehaviour
         else if (!rDodgeAct && !left) {
             healthBar.DecreaseHealth();
         }  
+    }
+
+    IEnumerator DoAttack() {
+        while(true) {
+            yield return new WaitForSeconds(2f);
+            Attack();
+        }
+    }
+
+    void Attack() {
+        float number = Random.Range(0,11);
+        if (number >= 6) {
+            int attack = Random.Range(1,3);
+            switch (attack){
+                case 1:
+                    DoLeftHook();
+                    break;
+                case 2:
+                    DoRightHook();
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame
