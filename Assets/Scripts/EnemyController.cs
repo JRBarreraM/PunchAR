@@ -19,7 +19,7 @@ public class EnemyController : BoxerController
     }
 
     void Attack() {
-        if(!badGuy.GetComponent<BoxerController>().isDown) {
+        if(!badGuy.GetComponent<BoxerController>().isDown || !isDown) {
             float number = Random.Range(0,11);
             if (number >= 6) {
                 int attack = Random.Range(1,3);

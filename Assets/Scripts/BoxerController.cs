@@ -50,17 +50,20 @@ public class BoxerController : MonoBehaviour
         if (lHookAct || rHookAct) {
             StartCoroutine(badGuy.GetComponent<BoxerController>().PunchReceived(lHookAct));
         }
-        yield return new WaitForSeconds(1.5f);
         switch (action)
         {
             case "LeftHook":
+                yield return new WaitForSeconds(1.5f);
                 lHookAct = false; busy = false; break;
             case "RightHook":
+                yield return new WaitForSeconds(1.5f);
                 rHookAct = false; busy = false; break;
             case "RightBlock":
-                lDodgeAct = false; busy = false; break;
-            case "LeftBlock":
+                yield return new WaitForSeconds(0.5f);
                 rDodgeAct = false; busy = false; break;
+            case "LeftBlock":
+                yield return new WaitForSeconds(0.5f);
+                lDodgeAct = false; busy = false; break;
         }
     }
 
@@ -76,7 +79,8 @@ public class BoxerController : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(1.5f);
-        busy = false;
+        if (!isDown)
+            busy = false;
     }
 
     IEnumerator Knocked(){
@@ -95,19 +99,22 @@ public class BoxerController : MonoBehaviour
                 countdown.CountTo(4);
                 yield return new WaitForSeconds(4f);
                 animator.SetTrigger("GettingUp");
+                isDown = false;
+                healthBar.SetHealthBarValue(1.0f);
                 break;
             case 2:
                 countdown.CountTo(7);
                 yield return new WaitForSeconds(7f);
                 animator.SetTrigger("GettingUp");
+                healthBar.SetHealthBarValue(1.0f);
+                isDown = false;
                 break;
             default:
                 countdown.CountTo(10);
                 yield return new WaitForSeconds(10f);
                 break;
         }
-        healthBar.SetHealthBarValue(1.0f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         busy = false;
     }
 
@@ -117,5 +124,7 @@ public class BoxerController : MonoBehaviour
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));
+        if (gameObject.tag == "Player")
+            Debug.Log(busy);
     }
 }
