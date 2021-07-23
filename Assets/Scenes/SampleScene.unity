@@ -204,7 +204,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1929319438}
-        m_MethodName: DoRightBlock
+        m_MethodName: DoLeftBlock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -271,6 +271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   badGuy: {fileID: 1929319435}
   healthBar: {fileID: 796603511}
+  countdown: {fileID: 1772703128}
+  KO: 0
+  isDown: 0
   busy: 0
   lHookAct: 0
   rHookAct: 0
@@ -1916,6 +1919,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d81f7f7f7ea6fcc4cb3a0eaf3dd66aae,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81f7f7f7ea6fcc4cb3a0eaf3dd66aae, type: 3}
 --- !u!1 &1772703126
@@ -2336,11 +2344,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929319435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e16715fc65acd0c4c93cfe7500434e5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fe914f56514dd7409d8a7c69daa6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   badGuy: {fileID: 279607895}
   healthBar: {fileID: 489883952}
+  countdown: {fileID: 1772703128}
+  KO: 0
+  isDown: 0
   busy: 0
   lHookAct: 0
   rHookAct: 0
@@ -2695,7 +2706,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1929319438}
-        m_MethodName: DoLeftBlock
+        m_MethodName: DoRightBlock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

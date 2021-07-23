@@ -73,16 +73,23 @@ public class BoxerController : MonoBehaviour
         KO++;
         isDown = true;
         busy = true;
+        if(KO < 3) {
+            animator.SetTrigger("Stunned");
+        } else {
+            animator.SetTrigger("KnockedOut");
+        }
         yield return new WaitForSeconds(1f);
         switch (KO)
         {
             case 1:
                 countdown.CountTo(4);
                 yield return new WaitForSeconds(4f);
+                animator.SetTrigger("GettingUp");
                 break;
             case 2:
                 countdown.CountTo(7);
                 yield return new WaitForSeconds(7f);
+                animator.SetTrigger("GettingUp");
                 break;
             default:
                 countdown.CountTo(10);
