@@ -2062,7 +2062,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd9820203d0e4647a43ea817ebc897f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badGuy: {fileID: 2064170337}
+  badGuy: {fileID: 2064170338}
+  healthBar: {fileID: 717337495}
+  countdown: {fileID: 61212949}
+  KO: 0
+  isDown: 0
+  busy: 0
+  lHookAct: 0
+  rHookAct: 0
+  lDodgeAct: 0
+  rDodgeAct: 0
 --- !u!1 &1088418510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,7 +2157,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2074252577}
+  - {fileID: 1686757068}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2559,7 +2568,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569715678}
   m_CullTransparentMesh: 1
---- !u!21 &1588403298
+--- !u!21 &1654837251
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -2568,7 +2577,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 'PersonajeMaterial
 
-    19310'
+    14276'
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -2582,6 +2591,34 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: ffc15c14e9cb4ac8bc7d732c0f93652e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+--- !u!21 &1686757068
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'EnemigoMaterial
+
+    14230'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 2be33f612f124d9c9be2cbd03fda8558, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -2634,7 +2671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1588403298}
+  - {fileID: 1654837251}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3059,7 +3096,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16715fc65acd0c4c93cfe7500434e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badGuy: {fileID: 1398969528}
+  badGuy: {fileID: 996144184}
+  healthBar: {fileID: 876532762}
+  countdown: {fileID: 61212949}
+  KO: 0
+  isDown: 0
+  busy: 0
+  lHookAct: 0
+  rHookAct: 0
+  lDodgeAct: 0
+  rDodgeAct: 0
 --- !u!95 &2064170340
 Animator:
   serializedVersion: 3
@@ -3079,34 +3125,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!21 &2074252577
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'EnemigoMaterial
-
-    19266'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2be33f612f124d9c9be2cbd03fda8558, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &2112831067
 GameObject:
   m_ObjectHideFlags: 0

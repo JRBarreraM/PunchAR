@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     public GameObject badGuy;
     public HealthBar healthBar;
+    public Countdown countdown;
+    public int KO = 0;
+    public bool isDown = false;
     public bool busy = false;
     public bool lHookAct = false;
     public bool rHookAct = false;
@@ -33,9 +36,9 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator DoAnimation(string action){
         animator.SetBool(action, true);
+        yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct)
             badGuy.GetComponent<EnemyController>().PunchReceived(lHookAct);
-        yield return new WaitForSeconds(0.5f);
         animator.SetBool(action, false);
         switch (action)
         {
@@ -51,12 +54,34 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PunchReceived(bool left){
-        if (!lDodgeAct && left){
-           healthBar.DecreaseHealth();
+        if ((!lDodgeAct && left) || (!rDodgeAct && !left)){
+            if (!healthBar.DecreaseHealth() && !isDown){
+                Debug.Log("AHAAAAAAAAAAAAAA");
+                StartCoroutine(Knocked());
+            }
         }
-        else if (!rDodgeAct && !left) {
-            healthBar.DecreaseHealth();
-        }  
+    }
+
+    IEnumerator Knocked(){
+        KO++;
+        isDown = true;
+        busy = true;
+        // animator.SetBool("Stunned", true);
+        Debug.Log(KO);
+        switch (KO)
+        {
+            case 1:
+                countdown.CountTo(4);
+                yield return new WaitForSeconds(5f);
+                break;
+            default:
+                break;
+        }
+        // animator.SetBool("Stunned", false);
+        // animator.SetBool("GettingUp", true);
+        yield return new WaitForSeconds(1f);
+        // animator.SetBool("GettingUp", false);
+        busy = false;
     }
 
     // Update is called once per frame

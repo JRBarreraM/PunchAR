@@ -24,9 +24,12 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    public void DecreaseHealth(){
-        if (health > 0.1f)
+    public bool DecreaseHealth(){
+        if (health > 0.1f){
             SetHealthBarValue(GetHealthBarValue() - 0.2f);
+            return health < 0.1f ? false : true;
+        }
+        return false;
     }
     public float GetHealthBarValue()
     {
