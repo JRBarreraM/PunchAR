@@ -25,21 +25,24 @@ public class PlayerController : MonoBehaviour
     public void DoLeftHook(){
         if (!busy){lHookAct = true; busy = true; StartCoroutine(DoAnimation("LeftHook"));}
     }
+
     public void DoRightHook(){
         if (!busy){rHookAct = true; busy = true; StartCoroutine(DoAnimation("RightHook"));}
     }
+
     public void DoRightBlock(){
         if (!busy){rDodgeAct = true; busy = true; StartCoroutine(DoAnimation("RightBlock"));}
     }
+
     public void DoLeftBlock(){
         if (!busy){lDodgeAct = true; busy = true; StartCoroutine(DoAnimation("LeftBlock"));}
     }
+
     IEnumerator DoAnimation(string action){
-        animator.SetBool(action, true);
+        animator.SetTrigger(action);
         yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct)
             badGuy.GetComponent<EnemyController>().PunchReceived(lHookAct);
-        animator.SetBool(action, false);
         switch (action)
         {
             case "LeftHook":
@@ -55,9 +58,12 @@ public class PlayerController : MonoBehaviour
 
     public void PunchReceived(bool left){
         if ((!lDodgeAct && left) || (!rDodgeAct && !left)){
-            if (!healthBar.DecreaseHealth() && !isDown){
-                Debug.Log("AHAAAAAAAAAAAAAA");
+            bool alive = healthBar.DecreaseHealth();
+            if (!alive && !isDown){
                 StartCoroutine(Knocked());
+            }
+            else if (alive){
+                animator.SetTrigger("Hit");
             }
         }
     }
@@ -67,14 +73,20 @@ public class PlayerController : MonoBehaviour
         isDown = true;
         busy = true;
         // animator.SetBool("Stunned", true);
-        Debug.Log(KO);
+        yield return new WaitForSeconds(1f);
         switch (KO)
         {
             case 1:
                 countdown.CountTo(4);
-                yield return new WaitForSeconds(5f);
+                yield return new WaitForSeconds(4f);
+                break;
+            case 2:
+                countdown.CountTo(7);
+                yield return new WaitForSeconds(7f);
                 break;
             default:
+                countdown.CountTo(10);
+                yield return new WaitForSeconds(10f);
                 break;
         }
         // animator.SetBool("Stunned", false);

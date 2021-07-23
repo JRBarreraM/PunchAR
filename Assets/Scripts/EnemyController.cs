@@ -42,11 +42,10 @@ public class EnemyController : MonoBehaviour
     }
 
     IEnumerator DoAnimation(string action){
-        animator.SetBool(action, true);
+        animator.SetTrigger(action);
         yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct)
             badGuy.GetComponent<PlayerController>().PunchReceived(lHookAct);
-        animator.SetBool(action, false);
         switch (action)
         {
             case "LeftHook":
@@ -62,9 +61,12 @@ public class EnemyController : MonoBehaviour
 
     public void PunchReceived(bool left){
         if ((!lDodgeAct && left) || (!rDodgeAct && !left)){
-            if (!healthBar.DecreaseHealth() && !isDown){
-                Debug.Log("AHAAAAAAAAAAAAAA");
+            bool alive = healthBar.DecreaseHealth();
+            if (!alive && !isDown){
                 StartCoroutine(Knocked());
+            }
+            else if (alive){
+                animator.SetTrigger("Hit");
             }
         }
     }
@@ -74,14 +76,20 @@ public class EnemyController : MonoBehaviour
         isDown = true;
         busy = true;
         // animator.SetBool("Stunned", true);
-        Debug.Log(KO);
+        yield return new WaitForSeconds(1f);
         switch (KO)
         {
             case 1:
                 countdown.CountTo(4);
-                yield return new WaitForSeconds(5f);
+                yield return new WaitForSeconds(4f);
+                break;
+            case 2:
+                countdown.CountTo(7);
+                yield return new WaitForSeconds(7f);
                 break;
             default:
+                countdown.CountTo(10);
+                yield return new WaitForSeconds(10f);
                 break;
         }
         // animator.SetBool("Stunned", false);
