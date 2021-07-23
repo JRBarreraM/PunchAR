@@ -40,7 +40,13 @@ public class BoxerController : MonoBehaviour
 
     IEnumerator DoAnimation(string action){
         animator.SetTrigger(action);
-        yield return new WaitForSeconds(0.5f);
+        if(gameObject.tag != "Player"){
+            yield return new WaitForSeconds(0.25f);
+            animator.speed = 0.3f;
+            yield return new WaitForSeconds(0.25f);
+            animator.speed = 1f;
+        }
+        yield return new WaitForSeconds(0.3f);
         if (lHookAct || rHookAct) {
             badGuy.GetComponent<BoxerController>().PunchReceived(lHookAct);
         }
