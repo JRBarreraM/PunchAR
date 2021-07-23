@@ -19,16 +19,18 @@ public class EnemyController : BoxerController
     }
 
     void Attack() {
-        float number = Random.Range(0,11);
-        if (number >= 6) {
-            int attack = Random.Range(1,3);
-            switch (attack){
-                case 1:
-                    DoLeftHook();
-                    break;
-                case 2:
-                    DoRightHook();
-                    break;
+        if(!badGuy.GetComponent<BoxerController>().isDown) {
+            float number = Random.Range(0,11);
+            if (number >= 6) {
+                int attack = Random.Range(1,3);
+                switch (attack){
+                    case 1:
+                        DoLeftHook();
+                        break;
+                    case 2:
+                        DoRightHook();
+                        break;
+                }
             }
         }
     }
