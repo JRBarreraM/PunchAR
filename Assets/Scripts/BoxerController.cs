@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class BoxerController : MonoBehaviour
 {
-
-    Animator animator;
+    protected Animator animator;
     public GameObject badGuy;
     public HealthBar healthBar;
     public Countdown countdown;
@@ -16,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool rHookAct = false;
     public bool lDodgeAct = false;
     public bool rDodgeAct = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +41,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator DoAnimation(string action){
         animator.SetTrigger(action);
         yield return new WaitForSeconds(0.5f);
-        if (lHookAct || rHookAct)
-            badGuy.GetComponent<EnemyController>().PunchReceived(lHookAct);
+        if (lHookAct || rHookAct) {
+            badGuy.GetComponent<BoxerController>().PunchReceived(lHookAct);
+        }
         switch (action)
         {
             case "LeftHook":
@@ -72,7 +73,6 @@ public class PlayerController : MonoBehaviour
         KO++;
         isDown = true;
         busy = true;
-        // animator.SetBool("Stunned", true);
         yield return new WaitForSeconds(1f);
         switch (KO)
         {
@@ -89,27 +89,14 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(10f);
                 break;
         }
-        // animator.SetBool("Stunned", false);
-        // animator.SetBool("GettingUp", true);
+
         yield return new WaitForSeconds(1f);
-        // animator.SetBool("GettingUp", false);
         busy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        bool leftHook = Input.GetKey("h");
-        bool rightBlock = Input.GetKey("k");
-        bool leftBlock = Input.GetKey("j");
-        bool rightHook = Input.GetKey("l");
-
-        // animator.SetBool("LeftHook", leftHook);
-        // animator.SetBool("LeftBlock", leftBlock);
-        // animator.SetBool("RightBlock", rightBlock);
-        // animator.SetBool("RightHook", rightHook);
-
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));
