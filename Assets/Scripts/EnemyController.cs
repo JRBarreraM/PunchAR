@@ -40,16 +40,16 @@ public class EnemyController : BoxerController
             if (number >= 6) {
                 dodgeIt = true;
                 if (left){
-                    DoLeftBlock();
+                    DoRightBlock();
                 }
                 else {
-                    DoRightBlock();
+                    DoLeftBlock();
                 }
             }
         }
         if (!dodgeIt){
             busy = true;
-            if ((!lDodgeAct && left) || (!rDodgeAct && !left)){
+            if ((!lDodgeAct && !left) || (!rDodgeAct && left)){
                 bool alive = healthBar.DecreaseHealth();
                 if (!alive && !isDown){
                     StartCoroutine(Knocked());
