@@ -348,7 +348,7 @@ MonoBehaviour:
   healthBar: {fileID: 796603511}
   countdown: {fileID: 1772703128}
   scoreVisualizer: {fileID: 1971908249}
-  KO: 0
+  KO: 2
   isDown: 0
   busy: 0
   lHookAct: 0
@@ -2951,7 +2951,7 @@ MonoBehaviour:
   healthBar: {fileID: 489883952}
   countdown: {fileID: 1772703128}
   scoreVisualizer: {fileID: 1546841416}
-  KO: 0
+  KO: 2
   isDown: 0
   busy: 0
   lHookAct: 0

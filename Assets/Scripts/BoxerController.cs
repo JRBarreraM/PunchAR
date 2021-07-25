@@ -106,6 +106,7 @@ public class BoxerController : MonoBehaviour
                     BlueButton.interactable = true;
                 break;
             case "RightBlock":
+                audMan.Play("Esquivo");
                 yield return new WaitForSeconds(0.5f);
                 rDodgeAct = false;
                 busy = false;
@@ -113,6 +114,7 @@ public class BoxerController : MonoBehaviour
                     YellowButton.interactable = true;
                 break;
             case "LeftBlock":
+                audMan.Play("Esquivo");
                 yield return new WaitForSeconds(0.5f);
                 lDodgeAct = false;
                 busy = false;
@@ -166,14 +168,19 @@ public class BoxerController : MonoBehaviour
                 isDown = false;
                 break;
             default:
+                audMan.Stop("Main Theme");
+                audMan.Play("PunchKO");
                 animator.speed = 0.3f;
                 yield return new WaitForSeconds(2f);
+                audMan.Play("BIGOOF");
                 animator.speed = 1f;
                 countdown.CountTo(10);
-                audMan.Stop("Main Theme");
                 yield return new WaitForSeconds(10f);
                 badGuy.GetComponent<Animator>().SetTrigger("Victory");
-                audMan.Play("JohnCena");
+                if (gameObject.tag != "Player")
+                    audMan.Play("JohnCena");
+                else
+                    audMan.Play("Naruto");
                 break;
         }
         yield return new WaitForSeconds(4f);

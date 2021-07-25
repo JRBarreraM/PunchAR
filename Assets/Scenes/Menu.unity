@@ -539,7 +539,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: FOO
-    clip: {fileID: 8300000, guid: aef9c1c143622184a840d1f70315f578, type: 3}
+    clip: {fileID: 8300000, guid: 91eed284ecb3fd04fb30a6a2888aa9dd, type: 3}
     volume: 0.5
     volumeVariance: 0
     pitch: 1
@@ -556,8 +556,35 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: JonhCena
-    clip: {fileID: 8300000, guid: aef9c1c143622184a840d1f70315f578, type: 3}
+  - name: JohnCena
+    clip: {fileID: 8300000, guid: a2733a8c1ee266146a23b134860b6bde, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: PunchKO
+    clip: {fileID: 8300000, guid: 8486435d15065f8489a450f9b7401a98, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Naruto
+    clip: {fileID: 8300000, guid: f6bdc0086499a37439cadd99735adb79, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Esquivo
+    clip: {fileID: 8300000, guid: a3936d06ffcb489419b4579924e0696d, type: 3}
     volume: 0.5
     volumeVariance: 0
     pitch: 1
