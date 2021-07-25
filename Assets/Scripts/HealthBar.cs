@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
     private float health;
     public void SetHealthBarValue(float value)
     {
-        Debug.Log(health);
+        // Debug.Log(health);
         health = value;
         HealthBarImage.transform.localScale = new Vector3(value, 1, 1);
         if(health <= 0.3f)
