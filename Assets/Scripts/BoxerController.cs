@@ -167,8 +167,10 @@ public class BoxerController : MonoBehaviour
                 break;
             default:
                 countdown.CountTo(10);
+                audMan.Stop("Main Theme");
                 yield return new WaitForSeconds(10f);
                 badGuy.GetComponent<Animator>().SetTrigger("Victory");
+                audMan.Play("JohnCena");
                 break;
         }
         yield return new WaitForSeconds(4f);

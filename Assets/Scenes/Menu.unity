@@ -556,6 +556,15 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: JonhCena
+    clip: {fileID: 8300000, guid: aef9c1c143622184a840d1f70315f578, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &352461740
 Transform:
   m_ObjectHideFlags: 0
