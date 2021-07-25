@@ -60,6 +60,7 @@ public class BoxerController : MonoBehaviour
 
     public void DoRightBlock(){
         if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
+            audMan.Play("Esquivo");
             rDodgeAct = true;
             busy = true;
             if (gameObject.tag == "Player")
@@ -70,6 +71,7 @@ public class BoxerController : MonoBehaviour
 
     public void DoLeftBlock(){
         if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
+            audMan.Play("Esquivo");
             lDodgeAct = true;
             busy = true;
             if (gameObject.tag == "Player")
@@ -107,7 +109,6 @@ public class BoxerController : MonoBehaviour
                     BlueButton.interactable = true;
                 break;
             case "RightBlock":
-                audMan.Play("Esquivo");
                 yield return new WaitForSeconds(0.5f);
                 rDodgeAct = false;
                 busy = false;
@@ -115,7 +116,6 @@ public class BoxerController : MonoBehaviour
                     YellowButton.interactable = true;
                 break;
             case "LeftBlock":
-                audMan.Play("Esquivo");
                 yield return new WaitForSeconds(0.5f);
                 lDodgeAct = false;
                 busy = false;
@@ -151,7 +151,6 @@ public class BoxerController : MonoBehaviour
         } else {
             animator.SetTrigger("KnockedOut");
         }
-        yield return new WaitForSeconds(1f);
         switch (KO)
         {
             case 1:
@@ -171,9 +170,10 @@ public class BoxerController : MonoBehaviour
             default:
                 audMan.Stop("Main Theme");
                 audMan.Play("PunchKO");
+                yield return new WaitForSeconds(0.5f);
+                audMan.Play("BIGOOF");
                 animator.speed = 0.3f;
                 yield return new WaitForSeconds(2f);
-                audMan.Play("BIGOOF");
                 animator.speed = 1f;
                 countdown.CountTo(10);
                 yield return new WaitForSeconds(10f);

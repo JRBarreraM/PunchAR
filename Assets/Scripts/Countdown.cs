@@ -11,7 +11,7 @@ public class Countdown : MonoBehaviour
     void Awake()
 	{
 		audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
-        CountTo(4);
+        // CountTo(4);
 	}
 
     public void CountTo(int goal){
