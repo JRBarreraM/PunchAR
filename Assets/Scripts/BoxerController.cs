@@ -77,7 +77,7 @@ public class BoxerController : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             animator.speed = 1f;
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         if (lHookAct || rHookAct) {
             StartCoroutine(badGuy.GetComponent<BoxerController>().PunchReceived(lHookAct));
         }
@@ -116,7 +116,7 @@ public class BoxerController : MonoBehaviour
 
     public virtual IEnumerator PunchReceived(bool left){
         busy = true;
-        if ((!lDodgeAct && left) || (!rDodgeAct && !left)){
+        if ((!lDodgeAct && !left) || (!rDodgeAct && left)){
             bool alive = healthBar.DecreaseHealth();
             if (!alive && !isDown){
                 StartCoroutine(Knocked());
