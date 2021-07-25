@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class BoxerController : MonoBehaviour
 {
     protected Animator animator;
+    public AudioManager audMan;
     public GameObject badGuy;
     public HealthBar healthBar;
     public Countdown countdown;
@@ -12,6 +13,7 @@ public class BoxerController : MonoBehaviour
     private Button RedButton;
     private Button YellowButton;
     private Button GreenButton;
+    public ScoreVisualizer scoreVisualizer;
     public int KO = 0;
     public bool isDown = false;
     public bool busy = false;
@@ -28,6 +30,11 @@ public class BoxerController : MonoBehaviour
         GreenButton = GameObject.Find("GreenButton").GetComponent<Button>();
         RedButton = GameObject.Find("RedButton").GetComponent<Button>();
         YellowButton =  GameObject.Find("YellowButton").GetComponent<Button>();
+    }
+
+    void Awake()
+	{
+        audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
     }
 
     public void DoLeftHook(){
@@ -122,6 +129,7 @@ public class BoxerController : MonoBehaviour
                 StartCoroutine(Knocked());
             }
             else if (alive){
+                audMan.Play("OOF");
                 animator.SetTrigger("Hit");
             }
         }
@@ -132,6 +140,7 @@ public class BoxerController : MonoBehaviour
 
     public IEnumerator Knocked(){
         KO++;
+        scoreVisualizer.SetScore(KO);
         isDown = true;
         busy = true;
         if(KO < 3) {

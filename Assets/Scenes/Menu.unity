@@ -529,6 +529,33 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: OOF
+    clip: {fileID: 8300000, guid: d09e2aa1721d99a4a96e2d849235e714, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: FOO
+    clip: {fileID: 8300000, guid: aef9c1c143622184a840d1f70315f578, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BIGOOF
+    clip: {fileID: 8300000, guid: aef9c1c143622184a840d1f70315f578, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &352461740
 Transform:
   m_ObjectHideFlags: 0
@@ -556,6 +583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audMan: {fileID: 352461739}
+  round: 1
+  gameState: 0
 --- !u!1 &486111050
 GameObject:
   m_ObjectHideFlags: 0

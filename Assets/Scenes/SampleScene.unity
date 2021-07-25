@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 189835896}
   - component: {fileID: 189835895}
   m_Layer: 5
-  m_Name: OneKOPlayer
+  m_Name: OneKO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,6 +346,7 @@ MonoBehaviour:
   badGuy: {fileID: 1929319435}
   healthBar: {fileID: 796603511}
   countdown: {fileID: 1772703128}
+  scoreVisualizer: {fileID: 1971908249}
   KO: 0
   isDown: 0
   busy: 0
@@ -1088,7 +1089,7 @@ GameObject:
   - component: {fileID: 1147104114}
   - component: {fileID: 1147104113}
   m_Layer: 5
-  m_Name: OneKOEnemy
+  m_Name: OneKO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1163,7 @@ GameObject:
   - component: {fileID: 1149423305}
   - component: {fileID: 1149423304}
   m_Layer: 5
-  m_Name: ThreeKOPlayer
+  m_Name: ThreeKO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,7 +1303,7 @@ GameObject:
   - component: {fileID: 1208261298}
   - component: {fileID: 1208261297}
   m_Layer: 5
-  m_Name: TwoKOPlayer
+  m_Name: TwoKO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1376,7 +1377,7 @@ GameObject:
   - component: {fileID: 1257515633}
   - component: {fileID: 1257515632}
   m_Layer: 5
-  m_Name: ThreeKOEnemy
+  m_Name: ThreeKO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2004,6 +2005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546841415}
+  - component: {fileID: 1546841416}
   m_Layer: 5
   m_Name: PlayerScore
   m_TagString: Untagged
@@ -2033,6 +2035,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1546841416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546841414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a474cfc1b3a3944dbcc883054f2e3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneKo: {fileID: 1147104113}
+  TwoKo: {fileID: 1797795819}
+  ThreeKo: {fileID: 1257515632}
 --- !u!1 &1566931108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,7 +2511,7 @@ GameObject:
   - component: {fileID: 1797795820}
   - component: {fileID: 1797795819}
   m_Layer: 5
-  m_Name: TwoKOEnemy
+  m_Name: TwoKO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2834,6 +2851,7 @@ MonoBehaviour:
   badGuy: {fileID: 279607895}
   healthBar: {fileID: 489883952}
   countdown: {fileID: 1772703128}
+  scoreVisualizer: {fileID: 1546841416}
   KO: 0
   isDown: 0
   busy: 0
@@ -2983,6 +3001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1971908248}
+  - component: {fileID: 1971908249}
   m_Layer: 5
   m_Name: EnemyScore
   m_TagString: Untagged
@@ -3012,6 +3031,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1971908249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971908247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a474cfc1b3a3944dbcc883054f2e3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneKo: {fileID: 189835895}
+  TwoKo: {fileID: 1208261297}
+  ThreeKo: {fileID: 1149423304}
 --- !u!1 &2011780407
 GameObject:
   m_ObjectHideFlags: 0

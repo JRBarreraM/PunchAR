@@ -55,6 +55,7 @@ public class EnemyController : BoxerController
                     StartCoroutine(Knocked());
                 }
                 else if (alive){
+                    audMan.Play("OOF");
                     animator.SetTrigger("Hit");
                 }
             }
