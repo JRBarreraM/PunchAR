@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine.Rendering.PostProcessing;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -179,8 +180,10 @@ public class BoxerController : MonoBehaviour
                 badGuy.GetComponent<Animator>().SetTrigger("Victory");
                 if (gameObject.tag != "Player")
                     audMan.Play("JohnCena");
-                else
+                else {
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>().enabled = true;
                     audMan.Play("Naruto");
+                }
                 break;
         }
         yield return new WaitForSeconds(4f);
