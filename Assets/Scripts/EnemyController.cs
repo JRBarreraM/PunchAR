@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyController : BoxerController
 {
+    LineRenderer lineRenderer;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         StartCoroutine(DoAttack());
+        lineRenderer = GetComponent<LineRenderer>();
     }   
 
     IEnumerator DoAttack() {
@@ -62,6 +64,20 @@ public class EnemyController : BoxerController
             if (!isDown)
                 busy = false;
         }
+    }
+
+    void Update() {
+        
+        Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
+        this.transform.LookAt(targetPostition);
+        Vector3[] positions = new Vector3[2] {transform.position, badGuy.transform.position };
+        lineRenderer.SetPositions(positions);
+        float distance = (transform.position - badGuy.transform.position).magnitude;
+
+        if(distance > 1.5 || distance < 1)
+            lineRenderer.material.color = Color.red;
+        else
+            lineRenderer.material.color = Color.green;   
     }
 
 }

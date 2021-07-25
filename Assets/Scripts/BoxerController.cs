@@ -171,7 +171,5 @@ public class BoxerController : MonoBehaviour
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));
-        // if (gameObject.tag == "Player")
-            // Debug.Log(busy);
     }
 }
