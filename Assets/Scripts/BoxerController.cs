@@ -23,6 +23,7 @@ public class BoxerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        busy = true;
         animator = GetComponent<Animator>();
         BlueButton = GameObject.Find("BlueButton").GetComponent<Button>();
         GreenButton = GameObject.Find("GreenButton").GetComponent<Button>();
@@ -31,7 +32,7 @@ public class BoxerController : MonoBehaviour
     }
 
     public void DoLeftHook(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
             lHookAct = true;
             busy = true;
             if (gameObject.tag == "Player")
@@ -40,7 +41,7 @@ public class BoxerController : MonoBehaviour
     }
 
     public void DoRightHook(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
             rHookAct = true;
             busy = true;
             if (gameObject.tag == "Player")
@@ -50,7 +51,7 @@ public class BoxerController : MonoBehaviour
     }
 
     public void DoRightBlock(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
             rDodgeAct = true;
             busy = true;
             if (gameObject.tag == "Player")
@@ -60,7 +61,7 @@ public class BoxerController : MonoBehaviour
     }
 
     public void DoLeftBlock(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
             lDodgeAct = true;
             busy = true;
             if (gameObject.tag == "Player")
@@ -126,8 +127,7 @@ public class BoxerController : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(1.5f);
-        if (!isDown)
-            busy = false;
+        busy = false;
     }
 
     public IEnumerator Knocked(){
@@ -159,10 +159,12 @@ public class BoxerController : MonoBehaviour
             default:
                 countdown.CountTo(10);
                 yield return new WaitForSeconds(10f);
+                badGuy.GetComponent<Animator>().SetTrigger("Victory");
                 break;
         }
         yield return new WaitForSeconds(4f);
-        busy = false;
+        if(KO < 3)
+            busy = false;
     }
 
     // Update is called once per frame

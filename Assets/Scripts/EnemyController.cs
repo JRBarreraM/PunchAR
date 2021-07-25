@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnemyController : BoxerController
 {
     LineRenderer lineRenderer;
+    bool fighting = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         StartCoroutine(DoAttack());
         lineRenderer = GetComponent<LineRenderer>();
+        busy = true;
     }   
 
     IEnumerator DoAttack() {
@@ -66,18 +68,30 @@ public class EnemyController : BoxerController
         }
     }
 
+    IEnumerator startFight() {
+        animator.SetTrigger("Ready");
+        badGuy.GetComponent<Animator>().SetTrigger("Ready");
+        busy = false;
+        badGuy.GetComponent<BoxerController>().busy = false;
+        fighting = true;
+        yield return new WaitForSeconds(1.5f);
+    }
+
     void Update() {
-        
+
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         Vector3[] positions = new Vector3[2] {transform.position, badGuy.transform.position };
         lineRenderer.SetPositions(positions);
         float distance = (transform.position - badGuy.transform.position).magnitude;
 
-        if(distance > 1.5 || distance < 1)
+        if(distance > 1.5 || distance < 1) {
             lineRenderer.material.color = Color.red;
-        else
+        } else {
+            if (!fighting)
+                StartCoroutine(startFight());
             lineRenderer.material.color = Color.green;   
+        }
     }
 
 }
