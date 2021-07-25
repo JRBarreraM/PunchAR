@@ -31,19 +31,42 @@ public class BoxerController : MonoBehaviour
     }
 
     public void DoLeftHook(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){lHookAct = true; busy = true; RedButton.interactable = false; StartCoroutine(DoAnimation("LeftHook"));}
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+            lHookAct = true;
+            busy = true;
+            if (gameObject.tag == "Player")
+                RedButton.interactable = false;
+            StartCoroutine(DoAnimation("LeftHook"));}
     }
 
     public void DoRightHook(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){rHookAct = true; busy = true; BlueButton.interactable = false; StartCoroutine(DoAnimation("RightHook"));}
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+            rHookAct = true;
+            busy = true;
+            if (gameObject.tag == "Player")
+                BlueButton.interactable = false;
+            StartCoroutine(DoAnimation("RightHook"));
+        }
     }
 
     public void DoRightBlock(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){rDodgeAct = true; busy = true; YellowButton.interactable = false; StartCoroutine(DoAnimation("RightBlock"));}
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+            rDodgeAct = true;
+            busy = true;
+            if (gameObject.tag == "Player")
+                YellowButton.interactable = false;
+            StartCoroutine(DoAnimation("RightBlock"));
+        }
     }
 
     public void DoLeftBlock(){
-        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){lDodgeAct = true; busy = true; GreenButton.interactable = false; StartCoroutine(DoAnimation("LeftBlock"));}
+        if (!busy && !badGuy.GetComponent<BoxerController>().isDown){
+            lDodgeAct = true;
+            busy = true;
+            if (gameObject.tag == "Player")
+                GreenButton.interactable = false;
+            StartCoroutine(DoAnimation("LeftBlock"));
+        }
     }
 
     IEnumerator DoAnimation(string action){
@@ -62,16 +85,32 @@ public class BoxerController : MonoBehaviour
         {
             case "LeftHook":
                 yield return new WaitForSeconds(1.5f);
-                lHookAct = false; busy = false; RedButton.interactable = true; break;
+                lHookAct = false;
+                busy = false;
+                if (gameObject.tag == "Player")
+                    RedButton.interactable = true;
+                break;
             case "RightHook":
                 yield return new WaitForSeconds(1.5f);
-                rHookAct = false; busy = false; BlueButton.interactable = true; break;
+                rHookAct = false;
+                busy = false;
+                if (gameObject.tag == "Player")
+                    BlueButton.interactable = true;
+                break;
             case "RightBlock":
                 yield return new WaitForSeconds(0.5f);
-                rDodgeAct = false; busy = false; YellowButton.interactable = true; break;
+                rDodgeAct = false;
+                busy = false;
+                if (gameObject.tag == "Player")
+                    YellowButton.interactable = true;
+                break;
             case "LeftBlock":
                 yield return new WaitForSeconds(0.5f);
-                lDodgeAct = false; busy = false; GreenButton.interactable = true; break;
+                lDodgeAct = false;
+                busy = false;
+                if (gameObject.tag == "Player")
+                    GreenButton.interactable = true;
+                break;
         }
     }
 
