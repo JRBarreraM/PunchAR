@@ -166,6 +166,9 @@ public class BoxerController : MonoBehaviour
                 isDown = false;
                 break;
             default:
+                animator.speed = 0.3f;
+                yield return new WaitForSeconds(2f);
+                animator.speed = 1f;
                 countdown.CountTo(10);
                 audMan.Stop("Main Theme");
                 yield return new WaitForSeconds(10f);
