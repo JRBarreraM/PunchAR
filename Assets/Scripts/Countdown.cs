@@ -23,6 +23,9 @@ public class Countdown : MonoBehaviour
 
         switch (goal)
         {
+            case 3:
+                sound = "countTo4";
+                break;
             case 4:
                 sound = "countTo4";
                 break;
