@@ -8,6 +8,7 @@ public class BoxerController : MonoBehaviour
     protected Animator animator;
     public AudioManager audMan;
     public GameObject badGuy;
+    protected FightManager fightManager;
     public HealthBar healthBar;
     public Countdown countdown;
     private Button BlueButton;
@@ -28,6 +29,7 @@ public class BoxerController : MonoBehaviour
     {
         busy = true;
         animator = GetComponent<Animator>();
+        fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
         BlueButton = GameObject.Find("BlueButton").GetComponent<Button>();
         GreenButton = GameObject.Find("GreenButton").GetComponent<Button>();
         RedButton = GameObject.Find("RedButton").GetComponent<Button>();

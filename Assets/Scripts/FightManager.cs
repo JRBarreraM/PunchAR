@@ -11,7 +11,7 @@ public class FightManager : MonoBehaviour
     bool fighting = false;
     public bool playerMarker = false;
     public bool badGuyMarker = false;
-    private int level = 0;
+    public int level = 0;
 
     void Awake()
 	{

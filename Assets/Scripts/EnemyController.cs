@@ -5,8 +5,13 @@ using UnityEngine;
 public class EnemyController : BoxerController
 {
 
+    private float[] attack = {6, 4, 2};
+    private float[] block = {7, 6, 3};
+
+    private int level;
     void Start()
     {
+        level = fightManager.level;
         animator = GetComponent<Animator>();
         StartCoroutine(DoAttack());
         busy = true;
@@ -21,7 +26,7 @@ public class EnemyController : BoxerController
 
     void Attack() {
         float number = Random.Range(0,11);
-        if (number >= 6) {
+        if (number >= attack[level]) {
             int attack = Random.Range(1,3);
             switch (attack){
                 case 1:
@@ -38,7 +43,7 @@ public class EnemyController : BoxerController
         bool dodgeIt = false;
         if (!busy){
             float number = Random.Range(0,11);
-            if (number >= 6) {
+            if (number >= block[level]) {
                 dodgeIt = true;
                 if (left){
                     DoRightBlock();
