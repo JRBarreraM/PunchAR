@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FightManager : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class FightManager : MonoBehaviour
     public GameObject[] badGuys;
     protected GameObject GoToMenuButton;
     protected GameObject GoToNextFight;
-
     bool fighting = false;
     public bool playerMarker = false;
     public bool badGuyMarker = false;
@@ -72,6 +71,12 @@ public class FightManager : MonoBehaviour
         badGuys[level].GetComponent<Animator>().SetTrigger("Ready");
         player.GetComponent<BoxerController>().busy = false;
         badGuys[level].GetComponent<BoxerController>().busy = false;
+    }
+
+    public void GoToMenu(){
+        audMan.Stop("Naruto");
+        audMan.Play("Main Theme");
+        SceneManager.LoadScene("Menu");
     }
 
     // Update is called once per frame
