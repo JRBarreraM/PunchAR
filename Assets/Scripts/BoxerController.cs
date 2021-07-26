@@ -29,7 +29,6 @@ public class BoxerController : MonoBehaviour
     {
         busy = true;
         animator = GetComponent<Animator>();
-        fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
         BlueButton = GameObject.Find("BlueButton").GetComponent<Button>();
         GreenButton = GameObject.Find("GreenButton").GetComponent<Button>();
         RedButton = GameObject.Find("RedButton").GetComponent<Button>();
@@ -38,6 +37,7 @@ public class BoxerController : MonoBehaviour
 
     void Awake()
 	{
+        fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
         audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
     }
 
@@ -201,6 +201,7 @@ public class BoxerController : MonoBehaviour
         KO = 0;
         scoreVisualizer.SetScore(KO);
         busy = true;
+        animator.SetTrigger("NewFight");
     }
 
     // Update is called once per frame

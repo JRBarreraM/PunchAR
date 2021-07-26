@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class EnemyController : BoxerController
 {
-
     private float[] attack = {6, 4, 2};
     private float[] block = {7, 6, 3};
-
     private int level;
+
     void Start()
     {
         level = fightManager.level;
