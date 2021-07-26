@@ -741,6 +741,15 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Falling
+    clip: {fileID: 8300000, guid: a3d7c214999c5f843adbae89d8af7ede, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &352461740
 Transform:
   m_ObjectHideFlags: 0

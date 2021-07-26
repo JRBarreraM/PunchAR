@@ -158,7 +158,7 @@ public class BoxerController : MonoBehaviour
         switch (KO)
         {
             case 1:
-                audMan.Play("PunchKO");
+                audMan.Play("Falling");
                 countdown.CountTo(4);
                 yield return new WaitForSeconds(4f);
                 animator.SetTrigger("GettingUp");
@@ -166,7 +166,7 @@ public class BoxerController : MonoBehaviour
                 healthBar.SetHealthBarValue(1.0f);
                 break;
             case 2:
-                audMan.Play("PunchKO");
+                audMan.Play("Falling");
                 countdown.CountTo(7);
                 yield return new WaitForSeconds(7f);
                 animator.SetTrigger("GettingUp");

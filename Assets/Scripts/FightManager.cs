@@ -11,6 +11,7 @@ public class FightManager : MonoBehaviour
     public GameObject[] badGuys;
     protected GameObject GoToMenuButton;
     protected GameObject GoToNextFight;
+    protected GameObject GoToMonaButton;
     bool fighting = false;
     public bool playerMarker = false;
     public bool badGuyMarker = false;
@@ -38,6 +39,7 @@ public class FightManager : MonoBehaviour
         audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
         GoToMenuButton = GameObject.Find("Menu");
         GoToNextFight = GameObject.Find("NextFight");
+        GoToMonaButton = GameObject.Find("Congratulations");
     }
 
     // Start is called before the first frame update
@@ -46,6 +48,7 @@ public class FightManager : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         GoToMenuButton.SetActive(false);
         GoToNextFight.SetActive(false);
+        GoToMonaButton.SetActive(false);
     }
 
     public void activeButtonRed(){
@@ -92,8 +95,11 @@ public class FightManager : MonoBehaviour
         if (boxer == "Player"){
             GoToMenuButton.SetActive(true);
         }
-        else{
+        else if (boxer != "Player" && level < 2){
             GoToNextFight.SetActive(true);
+        }
+        else {
+            GoToMonaButton.SetActive(true);
         }
     }
 
@@ -107,6 +113,7 @@ public class FightManager : MonoBehaviour
         player.GetComponent<BoxerController>().Reset();
         badGuys[level].SetActive(true);
         GoToNextFight.SetActive(false);
+        lineRenderer.enabled = true;
     }
 
     IEnumerator startFight() {
@@ -124,6 +131,10 @@ public class FightManager : MonoBehaviour
         audMan.Stop("Naruto");
         audMan.Play("Main Theme");
         SceneManager.LoadScene("Menu");
+    }
+
+    public void GoToMona(){
+        SceneManager.LoadScene("Mona");
     }
 
     // Update is called once per frame
