@@ -194,6 +194,7 @@ public class BoxerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Looking at Rival
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));

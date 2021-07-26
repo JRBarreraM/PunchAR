@@ -355,6 +355,8 @@ MonoBehaviour:
   rHookAct: 0
   lDodgeAct: 0
   rDodgeAct: 0
+  player: 0
+  rival: 0
 --- !u!120 &279607899
 LineRenderer:
   m_ObjectHideFlags: 0
