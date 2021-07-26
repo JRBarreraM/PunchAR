@@ -16,6 +16,7 @@ public class BoxerController : MonoBehaviour
     private Button YellowButton;
     private Button GreenButton;
     public ScoreVisualizer scoreVisualizer;
+    public bool gameModeMarkers;
     public int KO = 0;
     public bool isDown = false;
     public bool busy = false;
@@ -37,6 +38,7 @@ public class BoxerController : MonoBehaviour
 
     void Awake()
 	{
+        gameModeMarkers = GameObject.Find("GameManager").GetComponent<GameManager>().gameModeMarkers;
         fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
         audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
     }
@@ -45,7 +47,7 @@ public class BoxerController : MonoBehaviour
         if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
             lHookAct = true;
             busy = true;
-            if (gameObject.tag == "Player")
+            if (gameObject.tag == "Player" && !gameModeMarkers)
                 RedButton.interactable = false;
             StartCoroutine(DoAnimation("LeftHook"));}
     }
@@ -54,7 +56,7 @@ public class BoxerController : MonoBehaviour
         if (!busy && !badGuy.GetComponent<BoxerController>().isDown && !isDown){
             rHookAct = true;
             busy = true;
-            if (gameObject.tag == "Player")
+            if (gameObject.tag == "Player" && !gameModeMarkers)
                 BlueButton.interactable = false;
             StartCoroutine(DoAnimation("RightHook"));
         }
@@ -65,7 +67,7 @@ public class BoxerController : MonoBehaviour
             audMan.Play("Esquivo");
             rDodgeAct = true;
             busy = true;
-            if (gameObject.tag == "Player")
+            if (gameObject.tag == "Player" && !gameModeMarkers)
                 YellowButton.interactable = false;
             StartCoroutine(DoAnimation("RightBlock"));
         }
@@ -76,7 +78,7 @@ public class BoxerController : MonoBehaviour
             audMan.Play("Esquivo");
             lDodgeAct = true;
             busy = true;
-            if (gameObject.tag == "Player")
+            if (gameObject.tag == "Player" && !gameModeMarkers)
                 GreenButton.interactable = false;
             StartCoroutine(DoAnimation("LeftBlock"));
         }
@@ -100,28 +102,28 @@ public class BoxerController : MonoBehaviour
                 yield return new WaitForSeconds(1.5f);
                 lHookAct = false;
                 busy = false;
-                if (gameObject.tag == "Player")
+                if (gameObject.tag == "Player" && !gameModeMarkers)
                     RedButton.interactable = true;
                 break;
             case "RightHook":
                 yield return new WaitForSeconds(1.5f);
                 rHookAct = false;
                 busy = false;
-                if (gameObject.tag == "Player")
+                if (gameObject.tag == "Player" && !gameModeMarkers)
                     BlueButton.interactable = true;
                 break;
             case "RightBlock":
                 yield return new WaitForSeconds(0.5f);
                 rDodgeAct = false;
                 busy = false;
-                if (gameObject.tag == "Player")
+                if (gameObject.tag == "Player" && !gameModeMarkers)
                     YellowButton.interactable = true;
                 break;
             case "LeftBlock":
                 yield return new WaitForSeconds(0.5f);
                 lDodgeAct = false;
                 busy = false;
-                if (gameObject.tag == "Player")
+                if (gameObject.tag == "Player" && !gameModeMarkers)
                     GreenButton.interactable = true;
                 break;
         }
@@ -196,12 +198,13 @@ public class BoxerController : MonoBehaviour
             busy = false;
     }
 
-    public void Reset(){
+    public virtual void Reset(){
         healthBar.SetHealthBarValue(1.0f);
         KO = 0;
         scoreVisualizer.SetScore(KO);
         busy = true;
         animator.SetTrigger("NewFight");
+        badGuy = fightManager.badGuys[fightManager.level];
     }
 
     // Update is called once per frame

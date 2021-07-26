@@ -70,6 +70,12 @@ public class EnemyController : BoxerController
         }
     }
 
+    public override void Reset(){
+        healthBar.SetHealthBarValue(1.0f);
+        KO = 0;
+        scoreVisualizer.SetScore(KO);
+    }
+
     void Update() {
         // Looking at player
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);

@@ -15,9 +15,26 @@ public class FightManager : MonoBehaviour
     public bool playerMarker = false;
     public bool badGuyMarker = false;
     public int level = 0;
+    public bool gameModeMarkers;
+    public bool BlueMarker;
+    public bool RedMarker;
+    public bool YellowMarker;
+    public bool GreenMarker;
 
     void Awake()
 	{
+        gameModeMarkers = GameObject.Find("GameManager").GetComponent<GameManager>().gameModeMarkers;
+        if (gameModeMarkers){
+            GameObject.Find("BlueButton").SetActive(false);
+            GameObject.Find("GreenButton").SetActive(false);
+            GameObject.Find("RedButton").SetActive(false);
+            GameObject.Find("YellowButton").SetActive(false);
+        }else{
+            GameObject.Find("BlueButtonAR").SetActive(false);
+            GameObject.Find("GreenButtonAR").SetActive(false);
+            GameObject.Find("RedButtonAR").SetActive(false);
+            GameObject.Find("YellowButtonAR").SetActive(false);
+        }
         audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
         GoToMenuButton = GameObject.Find("Menu");
         GoToNextFight = GameObject.Find("NextFight");
@@ -31,6 +48,30 @@ public class FightManager : MonoBehaviour
         GoToNextFight.SetActive(false);
     }
 
+    public void activeButtonRed(){
+        RedMarker = true;
+    }
+    public void inactiveButtonRed(){
+        RedMarker = false;
+    }
+    public void activeButtonBlue(){
+        BlueMarker = true;
+    }
+    public void inactiveButtonBlue(){
+        BlueMarker = false;
+    }
+    public void activeButtonYellow(){
+        YellowMarker = true;
+    }
+    public void inactiveButtonYellow(){
+        YellowMarker = false;
+    }
+    public void activeButtonGreen(){
+        GreenMarker = true;
+    }
+    public void inactiveButtonGreen(){
+        GreenMarker = false;
+    }
     public void activePlayer() {
         playerMarker = true;
     }
@@ -58,11 +99,12 @@ public class FightManager : MonoBehaviour
 
     public void StartNextFight(){
         fighting = false;
-        player.GetComponent<BoxerController>().Reset();
+        badGuys[level].GetComponent<BoxerController>().Reset();
         audMan.Stop("JohnCena");
         audMan.Play("Main Theme");
         badGuys[level].SetActive(false);
         level++;
+        player.GetComponent<BoxerController>().Reset();
         badGuys[level].SetActive(true);
         GoToNextFight.SetActive(false);
     }
@@ -96,9 +138,12 @@ public class FightManager : MonoBehaviour
             if(distance > 1.5 || distance < 1) {
                 lineRenderer.material.color = Color.red;
             } else {
-                lineRenderer.material.color = Color.green;   
-                if (!fighting)
-                    StartCoroutine(startFight());
+                lineRenderer.material.color = Color.green;
+                if (!fighting){
+                    if ((gameModeMarkers && BlueMarker && RedMarker && YellowMarker && GreenMarker) || !gameModeMarkers){
+                        StartCoroutine(startFight());
+                    }
+                }
             }
         }
     }

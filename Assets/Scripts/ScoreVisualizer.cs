@@ -21,8 +21,8 @@ public class ScoreVisualizer : MonoBehaviour
                 ThreeKo.enabled = true;
                 break;
             case 0:
-                ThreeKo.enabled = false;
-                ThreeKo.enabled = false;
+                OneKo.enabled = false;
+                TwoKo.enabled = false;
                 ThreeKo.enabled = false;
                 break;
             default:

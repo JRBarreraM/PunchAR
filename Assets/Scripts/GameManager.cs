@@ -6,13 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public AudioManager audMan;
-    public int round = 1;
-    public int gameState;
-    void StartScene()
-    {
-        SceneManager.LoadScene("Movement", LoadSceneMode.Single);
-        audMan.Play("Main Theme");
-    }
+    public bool gameModeMarkers;
 
     // Start is called before the first frame update
     void Start()
