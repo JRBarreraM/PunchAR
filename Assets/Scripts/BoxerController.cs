@@ -8,6 +8,7 @@ public class BoxerController : MonoBehaviour
     protected Animator animator;
     public AudioManager audMan;
     public GameObject badGuy;
+    protected FightManager fightManager;
     public HealthBar healthBar;
     public Countdown countdown;
     private Button BlueButton;
@@ -28,6 +29,7 @@ public class BoxerController : MonoBehaviour
     {
         busy = true;
         animator = GetComponent<Animator>();
+        fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
         BlueButton = GameObject.Find("BlueButton").GetComponent<Button>();
         GreenButton = GameObject.Find("GreenButton").GetComponent<Button>();
         RedButton = GameObject.Find("RedButton").GetComponent<Button>();
@@ -154,6 +156,7 @@ public class BoxerController : MonoBehaviour
         switch (KO)
         {
             case 1:
+                audMan.Play("PunchKO");
                 countdown.CountTo(4);
                 yield return new WaitForSeconds(4f);
                 animator.SetTrigger("GettingUp");
@@ -161,6 +164,7 @@ public class BoxerController : MonoBehaviour
                 healthBar.SetHealthBarValue(1.0f);
                 break;
             case 2:
+                audMan.Play("PunchKO");
                 countdown.CountTo(7);
                 yield return new WaitForSeconds(7f);
                 animator.SetTrigger("GettingUp");
@@ -184,11 +188,19 @@ public class BoxerController : MonoBehaviour
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>().enabled = true;
                     audMan.Play("Naruto");
                 }
+                fightManager.boxerDown(gameObject.tag);
                 break;
         }
         yield return new WaitForSeconds(4f);
         if(KO < 3)
             busy = false;
+    }
+
+    public void Reset(){
+        healthBar.SetHealthBarValue(1.0f);
+        KO = 0;
+        scoreVisualizer.SetScore(KO);
+        busy = true;
     }
 
     // Update is called once per frame

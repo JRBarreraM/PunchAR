@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class FightManager : MonoBehaviour
     public AudioManager audMan;
     public GameObject player;
     public GameObject[] badGuys;
+    protected GameObject GoToMenuButton;
+    protected GameObject GoToNextFight;
+
     bool fighting = false;
     public bool playerMarker = false;
     public bool badGuyMarker = false;
@@ -16,12 +20,16 @@ public class FightManager : MonoBehaviour
     void Awake()
 	{
         audMan = GameObject.Find("GameManager").GetComponent<AudioManager>();
+        GoToMenuButton = GameObject.Find("Menu");
+        GoToNextFight = GameObject.Find("NextFight");
     }
 
     // Start is called before the first frame update
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        GoToMenuButton.SetActive(false);
+        GoToNextFight.SetActive(false);
     }
 
     public void activePlayer() {
@@ -38,6 +46,21 @@ public class FightManager : MonoBehaviour
 
     public void inactiveRival() {
         badGuyMarker = false;
+    }
+
+    public void boxerDown(string boxer){
+        if (boxer == "Player"){
+            GoToMenuButton.SetActive(true);
+        }
+        else{
+            GoToNextFight.SetActive(true);
+        }
+    }
+
+    public void StartNextFight(){
+        fighting = false;
+        player.GetComponent<BoxerController>().Reset();
+        level++;
     }
 
     IEnumerator startFight() {
