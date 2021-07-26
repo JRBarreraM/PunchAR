@@ -201,6 +201,7 @@ public class BoxerController : MonoBehaviour
         KO = 0;
         scoreVisualizer.SetScore(KO);
         busy = true;
+        animator.SetTrigger("NewFight");
     }
 
     // Update is called once per frame

@@ -59,7 +59,12 @@ public class FightManager : MonoBehaviour
     public void StartNextFight(){
         fighting = false;
         player.GetComponent<BoxerController>().Reset();
+        audMan.Stop("JohnCena");
+        audMan.Play("Main Theme");
+        badGuys[level].SetActive(false);
         level++;
+        badGuys[level].SetActive(true);
+        GoToNextFight.SetActive(false);
     }
 
     IEnumerator startFight() {
