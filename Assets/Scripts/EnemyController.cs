@@ -4,35 +4,13 @@ using UnityEngine;
 
 public class EnemyController : BoxerController
 {
-    LineRenderer lineRenderer;
-    bool fighting = false;
-
-    public bool player = false;
-    public bool rival = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         StartCoroutine(DoAttack());
-        lineRenderer = GetComponent<LineRenderer>();
         busy = true;
     }   
-
-    public void activePlayer() {
-        player = true;
-    }
-    
-    public void inactivePlayer() {
-        player = false;
-    }
-
-    public void activeRival() {
-        rival = true;
-    }
-
-    public void inactiveRival() {
-        rival = false;
-    }
 
     IEnumerator DoAttack() {
         while(true) {
@@ -88,39 +66,11 @@ public class EnemyController : BoxerController
         }
     }
 
-    IEnumerator startFight() {
-        fighting = true;
-        audMan.Play("countTo3");
-        
-        yield return new WaitForSeconds(4f);
-        lineRenderer.enabled = false;
-        animator.SetTrigger("Ready");
-        badGuy.GetComponent<Animator>().SetTrigger("Ready");
-        busy = false;
-        badGuy.GetComponent<BoxerController>().busy = false;
-    }
-
     void Update() {
-
         // Looking at player
         Vector3 targetPostition = new Vector3(badGuy.transform.position.x, this.transform.position.y, badGuy.transform.position.z);
         this.transform.LookAt(targetPostition);
         transform.Rotate(new Vector3(0f,15f,0f));
-
-        if ( player && rival ) {
-            // Rendering Line
-            Vector3[] positions = new Vector3[2] {transform.position, badGuy.transform.position };
-            lineRenderer.SetPositions(positions);
-            float distance = (transform.position - badGuy.transform.position).magnitude;
-
-            if(distance > 1.5 || distance < 1) {
-                lineRenderer.material.color = Color.red;
-            } else {
-                lineRenderer.material.color = Color.green;   
-                if (!fighting)
-                    StartCoroutine(startFight());
-            }
-        }
     }
 
 }
