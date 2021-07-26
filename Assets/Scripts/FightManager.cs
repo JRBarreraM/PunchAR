@@ -156,6 +156,8 @@ public class FightManager : MonoBehaviour
                     }
                 }
             }
+        } else {
+            lineRenderer.enabled = false;
         }
     }
 }
