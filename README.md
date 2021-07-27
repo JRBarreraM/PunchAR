@@ -26,7 +26,7 @@ En la pantalla inicial el usuario puede salir del juego o seleccionar un modo de
 Unity2019.4.28f1 - Vuforia9.8.8
 
 # Marcas utilizadas.
-![alt text](img/MarcasAR.jpg)
+![MarcasAR](https://user-images.githubusercontent.com/35788695/127080949-2fd6767d-8d64-42a7-8aa8-d9c4e659fd18.jpg)
 
 Las marcas de botones se usan para el modo de juego con botones AR, cuando la marca deja de ser detectada se considera que el boton ha sido precionado y se realiza la accion correspondiente. Boton Rojo: golpe izquierdo, Boton Azul: golpe derecho, Boton Verde: esquiva izquierda, Boton Amarillo: esquiza derecha.
 
@@ -36,7 +36,7 @@ Lo que genero mas bugs durante el desarrollo fue el uso de corutinas, y la comun
 # Posibles cambios en el planeamiento inicial.
 Originalmente se habia planteado solo tener el modo de juego con los botones AR, pero por recomendacion se decidio implementar tambien el modo con botones de unity.
 
-# Conclusión y Recomendaciones a futuro.![MarcasAR](https://user-images.githubusercontent.com/35788695/127080949-2fd6767d-8d64-42a7-8aa8-d9c4e659fd18.jpg)
+# Conclusión y Recomendaciones a futuro.
 
 La Realidad Aumentada puede ofrecer nuevas formas de implementar juegos clasicos, trayendo nuevos retos a los desarrolladores dada sus limitaciones y experiencias nuevas a los jugadores.  
 Recomendamos implementar los cambios necesarios para poder jugar con un dispositivo de Realidad Virtual.
