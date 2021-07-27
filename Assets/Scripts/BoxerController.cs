@@ -142,7 +142,8 @@ public class BoxerController : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(1.5f);
-        busy = false;
+        if (!isDown)
+            busy = false;
     }
 
     public IEnumerator Knocked(){
@@ -162,8 +163,8 @@ public class BoxerController : MonoBehaviour
                 countdown.CountTo(4);
                 yield return new WaitForSeconds(4f);
                 animator.SetTrigger("GettingUp");
-                isDown = false;
                 healthBar.SetHealthBarValue(1.0f);
+                isDown = false;
                 break;
             case 2:
                 audMan.Play("Falling");
